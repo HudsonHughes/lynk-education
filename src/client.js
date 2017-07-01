@@ -1,5 +1,5 @@
 /* @flow */
-
+import { CookiesProvider } from 'react-cookie';
 import React from 'react';
 import { render, unmountComponentAtNode } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
@@ -20,11 +20,13 @@ const renderApp = () => {
 
   render(
     <AppContainer>
-      <Provider store={store}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </Provider>
+      <CookiesProvider>
+        <Provider store={store}>
+          <ConnectedRouter history={history}>
+            <App />
+          </ConnectedRouter>
+        </Provider>
+      </CookiesProvider>
     </AppContainer>,
     mountNode,
   );

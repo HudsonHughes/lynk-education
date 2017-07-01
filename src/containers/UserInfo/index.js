@@ -5,6 +5,8 @@ import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import type { Connector } from 'react-redux';
 import Helmet from 'react-helmet';
+import { instanceOf } from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
 
 import * as action from './action';
 import type { UserInfo as UserInfoType, Dispatch, Reducer } from '../../types';
@@ -19,7 +21,19 @@ type Props = {
 
 // Export this for unit testing more easily
 export class UserInfo extends PureComponent {
+  static propTypes = {
+    cookies: instanceOf(Cookies).isRequired,
+  };
+
   props: Props;
+
+  componentWillMount() {
+    const { cookies } = this.props;
+
+    this.state = {
+      item: cookies.get('name') || 'Ben',
+    };
+  }
 
   static defaultProps: {
     userInfo: {},
@@ -36,7 +50,6 @@ export class UserInfo extends PureComponent {
   renderUserCard = () => {
     const { userInfo, match: { params } } = this.props;
     const userInfoById = userInfo[params.id];
-
     if (!userInfoById || userInfoById.readyStatus === action.USER_REQUESTING) {
       return <p>Loading...</p>;
     }
@@ -52,6 +65,7 @@ export class UserInfo extends PureComponent {
     return (
       <div className={styles.UserInfo}>
         <Helmet title="User Info" />
+        <h1>Hello {this.state.item}!</h1>
         {this.renderUserCard()}
       </div>
     );
@@ -65,4 +79,4 @@ const connector: Connector<{}, Props> = connect(
   }),
 );
 
-export default connector(UserInfo);
+export default withCookies(connector(UserInfo));

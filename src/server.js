@@ -1,5 +1,5 @@
 /* @flow */
-
+import { CookiesProvider } from 'react-cookie';
 import path from 'path';
 import morgan from 'morgan';
 import express from 'express';
@@ -90,11 +90,13 @@ app.get('*', (req, res) => {
       // Setup React-Router server-side rendering
       const routerContext = {};
       const htmlContent = renderToString(
-        <Provider store={store}>
-          <StaticRouter location={req.url} context={routerContext}>
-            <App />
-          </StaticRouter>
-        </Provider>,
+        <CookiesProvider cookies={req.universalCookies}>
+          <Provider store={store}>
+            <StaticRouter location={req.url} context={routerContext}>
+              <App />
+            </StaticRouter>
+          </Provider>
+        </CookiesProvider>,
       );
 
       // Check if the render result contains a redirect, if so we need to set
