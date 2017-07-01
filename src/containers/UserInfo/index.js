@@ -29,7 +29,7 @@ export class UserInfo extends PureComponent {
 
   componentWillMount() {
     const { cookies } = this.props;
-
+    cookies.set('name', 'BOB');
     this.state = {
       item: cookies.get('name') || 'Ben',
     };

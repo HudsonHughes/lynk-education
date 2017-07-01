@@ -21,6 +21,8 @@ import App from './containers/App';
 import routes from './routes';
 import { port, host } from './config';
 
+const cookiesMiddleware = require('universal-cookie-express');
+
 const app = express();
 
 // Using helmet to secure Express with various HTTP headers
@@ -34,6 +36,7 @@ app.use(compression());
 app.use(morgan('dev', { skip: (req, res) => res.statusCode < 400 }));
 app.use(favicon(path.join(process.cwd(), './build/public/favicon.ico')));
 app.use(express.static(path.join(process.cwd(), './build/public')));
+app.use(cookiesMiddleware());
 
 // Run express as webpack dev server
 if (__DEV__) {
