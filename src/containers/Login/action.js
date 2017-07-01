@@ -12,15 +12,29 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE';
 export const LOGIN_REQUESTING = 'LOGIN_REQUESTING';
 export const LOGIN_WAITING = 'LOGIN_WAITING';
 
-export const API_URL = 'https://jsonplaceholder.typicode.com/users';
+export const API_URL = 'https://jsonplaceholder.typicode.com';
 
 // Export this for unit testing more easily
 export const fetchLoginRequest = (email: String, password: Stirng, axios: any, URL: string = API_URL): ThunkAction =>
   (dispatch: Dispatch) => {
     dispatch({ type: LOGIN_REQUESTING });
-    return axios.get(URL)
+    const body = {email: email, password: password};
+    const request = {
+      url: '/users',
+      baseURL: API_URL,
+      method: 'get',
+      data: body,
+      timeout: 2000,
+      responseType: 'json',
+    }
+    return axios.request(request)
       .then((res) => {
-        dispatch({ type: LOGIN_SUCCESS, data: res.data });
+        if(res.status == 200){
+          dispatch({ type: LOGIN_SUCCESS, data: res.data });
+        }else{
+          dispatch({ type: LOGIN_FAILURE, data: res.data });
+        }
+        
       })
       .catch((err) => {
         dispatch({ type: LOGIN_FAILURE, err });
