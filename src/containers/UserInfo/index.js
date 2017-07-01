@@ -11,7 +11,6 @@ import { withCookies, Cookies } from 'react-cookie';
 import * as action from './action';
 import type { UserInfo as UserInfoType, Dispatch, Reducer } from '../../types';
 import UserCard from '../../components/UserCard';
-import styles from './styles.scss';
 
 type Props = {
   userInfo: UserInfoType,
@@ -63,7 +62,7 @@ export class UserInfo extends PureComponent {
 
   render() {
     return (
-      <div className={styles.UserInfo}>
+      <div>
         <Helmet title="User Info" />
         <h1>Hello {this.state.item}!</h1>
         {this.renderUserCard()}

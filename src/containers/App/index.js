@@ -4,12 +4,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
 import config from '../../config';
 import routes from '../../routes';
 // Import your global styles here
-import '../../theme/normalize.css';
-import styles from './styles.scss';
+import '../../theme/style.css';
 
 export default () => {
   // Use it when sub routes are added to any route it'll work
@@ -26,16 +27,19 @@ export default () => {
   );
 
   return (
-    <div className={styles.App}>
-      <Helmet {...config.app} />
-      <div className={styles.header}>
-        <img src={require('./assets/logo.svg')} alt="Logo" role="presentation" />
-        <h1>{config.app.title}</h1>
+    <MuiThemeProvider>
+      <div>
+        <Helmet {...config.app} />
+        <div>
+          <img src={require('./assets/logo.svg')} alt="Logo" role="presentation" />
+          <h1>{config.app.title}</h1>
+        </div>
+        <hr />
+        <RaisedButton label="Default" />
+        <Switch>
+          {routes.map(route => routeWithSubRoutes(route))}
+        </Switch>
       </div>
-      <hr />
-      <Switch>
-        {routes.map(route => routeWithSubRoutes(route))}
-      </Switch>
-    </div>
+    </MuiThemeProvider>
   );
 };

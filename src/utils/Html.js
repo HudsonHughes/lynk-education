@@ -48,19 +48,7 @@ const Html = ({ store, htmlContent }: Props) => {
               // eslint-disable-next-line react/no-danger
               dangerouslySetInnerHTML={{ __html:
                 // $FlowFixMe: It's not an issue
-                require('../theme/normalize.css')._style +
-                // $FlowFixMe: It's not an issue
-                require('../containers/App/styles.scss')._style +
-                // $FlowFixMe: It's not an issue
-                require('../containers/Home/styles.scss')._style +
-                // $FlowFixMe: It's not an issue
-                require('../containers/UserInfo/styles.scss')._style +
-                // $FlowFixMe: It's not an issue
-                require('../containers/NotFound/styles.scss')._style +
-                // $FlowFixMe: It's not an issue
-                require('../components/UserList/styles.scss')._style +
-                // $FlowFixMe: It's not an issue
-                require('../components/UserCard/styles.scss')._style,
+                require('../theme/style.css')._style,
               }}
             />
             : null

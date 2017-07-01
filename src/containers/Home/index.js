@@ -9,7 +9,6 @@ import Helmet from 'react-helmet';
 import * as action from './action';
 import type { Home as HomeType, Dispatch, Reducer } from '../../types';
 import UserList from '../../components/UserList';
-import styles from './styles.scss';
 
 type Props = {
   home: HomeType,
@@ -49,7 +48,7 @@ export class Home extends PureComponent {
 
   render() {
     return (
-      <div className={styles.Home}>
+      <div>
         <Helmet title="Home" />
         {this.renderUserList()}
       </div>

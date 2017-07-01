@@ -1,11 +1,9 @@
 import React from 'react';
 
-import styles from './styles.scss';
-
 type Props = { info: Object };
 
 const UserCard = ({ info }: Props) => (
-  <div className={styles.UserCard}>
+  <div>
     <h4>User Card</h4>
     <ul>
       <li>Name: {info.name}</li>
