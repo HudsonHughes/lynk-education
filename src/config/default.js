@@ -3,8 +3,8 @@ module.exports = {
   port: process.env.PORT,
   app: {
     htmlAttributes: { lang: 'en' },
-    title: 'React Cool Starter',
-    titleTemplate: 'React Cool Starter - %s',
+    title: 'Lynk Education',
+    titleTemplate: 'Lynk - %s',
     meta: [
       {
         name: 'description',

@@ -5,7 +5,6 @@ import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import _ from 'lodash';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import RaisedButton from 'material-ui/RaisedButton';
 
 import config from '../../config';
 import routes from '../../routes';
@@ -35,7 +34,6 @@ export default () => {
           <h1>{config.app.title}</h1>
         </div>
         <hr />
-        <RaisedButton label="Default" />
         <Switch>
           {routes.map(route => routeWithSubRoutes(route))}
         </Switch>

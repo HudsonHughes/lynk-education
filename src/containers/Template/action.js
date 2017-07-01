@@ -50,6 +50,7 @@ export const fetchUsersIfNeeded = (): ThunkAction =>
       /* istanbul ignore next */
       return dispatch(fetchUsers(axios));
     }
+
     /* istanbul ignore next */
     return null;
   };
