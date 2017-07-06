@@ -13,9 +13,9 @@ export default [
   {
     path: '/',
     exact: true,
-    component: HomePage,  // Add your route here
+    component: Login,  // Add your route here
     loadData: (dispatch: Dispatch) => Promise.all([
-      dispatch(fetchUsersIfNeeded()), // Register your server-side call action(s) here
+      
     ]),
   },
   {

@@ -12,6 +12,7 @@ import type { Action } from '../../types';
 
 const initialState = {
   status: LOGIN_WAITING,
+  token: null,
 };
 
 export default (state = initialState, action: Action) => {
